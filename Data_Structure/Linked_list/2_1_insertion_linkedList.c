@@ -6,6 +6,7 @@ struct Node
     struct Node *next;
 };
 typedef struct Node node;
+node * head = NULL;
 void print_list(node *ptr)
 {
     printf("Linked list are:");
