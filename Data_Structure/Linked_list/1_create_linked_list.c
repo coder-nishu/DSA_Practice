@@ -29,6 +29,7 @@ int main(){
 
      head ->data = 5;
      head -> next = second;
+     
      second->data = 7;
      second->next = third;
 
