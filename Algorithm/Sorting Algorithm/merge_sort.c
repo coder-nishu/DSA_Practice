@@ -48,7 +48,7 @@ void MergeSort(int arr[], int low, int high)
 }
 int main()
 {
-    int arr[] = {9, 8, 7, 6, 4, 5, 3, 2};
+    int arr[] = {4,22,9,6,0,33,18,15,27};
     int size = sizeof(arr) / sizeof(int);
     int low = 0, high = size - 1;
     printf("Given array is: ");
