@@ -17,6 +17,7 @@ int max_profit(int weight[], int profit[], int max_w, int n)
             else
             {
                 table[i][j] = (profit[i-1] + table[i - 1][j - weight[i - 1]]);
+                
                 if (table[i][j] < table[i - 1][j])
                 {
                     table[i][j] = table[i-1][j];
