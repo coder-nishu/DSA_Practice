@@ -1,4 +1,4 @@
-# include<stdio.h> 
+#include <stdio.h>
 
 int Binary_search(int arr[], int size, int key)
 {
@@ -6,8 +6,9 @@ int Binary_search(int arr[], int size, int key)
      low = 0;
      high = size - 1;
      mid = (low + high) / 2;
-     while (low <= mid)
+     while (low <= high)
      {
+          mid = (low + high) / 2;
 
           if (arr[mid] == key)
           {
@@ -27,9 +28,9 @@ int main()
      int key;
      printf("Enter the search key:");
      scanf("%d", &key);
-     
+
      int b = Binary_search(arr, size, key);
-    
+
      if (b == -1)
      {
           printf("Binary search: no search found\n");

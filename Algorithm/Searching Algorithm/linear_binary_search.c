@@ -33,20 +33,10 @@ int Binary_search(int arr[], int size, int key)
     }
     return -1;
 }
-void print_array(int *arr, int size)
-{
-    printf("Given array is:");
-    for(int i=0;i<size;i++)
-    {
-        printf("%d\t",arr[i]);
-    }
-    printf("\n");
-}
 int main()
 {
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     int size = sizeof(arr) / sizeof(int);
-    print_array(arr,size);
     int key;
     printf("Enter the search key:");
     scanf("%d", &key);
