@@ -3,7 +3,7 @@
 void merge(int a[], int b[], int n, int m, int c[])
 {
     int i = 0, j = 0, k = 0;
-    while (i < n - 1 && j < m - 1)
+    while (i < n && j < m )
     {
         if (a[i] < b[j])
         {
@@ -14,11 +14,11 @@ void merge(int a[], int b[], int n, int m, int c[])
             c[k++] = b[j++];
         }
     }
-    while (i < n - 1)
+    while (i < n )
     {
         c[k++] = a[i++];
     }
-    while (j < m - 1)
+    while (j < m)
     {
         c[k++] = b[j++];
     }
@@ -35,7 +35,7 @@ void print(int *a,int n)
 
 int main()
 {
-    int a[] = {1, 2, 3, 4}, b[] = {5, 6, 7, 8, 9};
+    int a[] = {1,3,5,7,8,10}, b[] = {2,4,9,12,15,17};
     int n = sizeof(a) / sizeof(int);
     int m = sizeof(b) / sizeof(int);
     int c[m + n];
