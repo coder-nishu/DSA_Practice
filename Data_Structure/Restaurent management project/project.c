@@ -12,8 +12,8 @@ struct node
     struct node *next;
 };
 
-struct node *headc = NULL,*newnode,*tailc = NULL;
-struct node *heada = NULL, *taila = NULL;
+struct node *headcustomer = NULL,*newnode,*tailcustomer = NULL;
+struct node *headadmin = NULL, *tailadmin = NULL;
 struct node *head_s;
 
 void adminmenu()
@@ -50,25 +50,25 @@ struct node* createadmin(struct node *head,int data, char foodname[25], float pr
     struct node *temp = head;
 
     if(temp==NULL)
-        heada = taila = newnode;
+        headadmin = tailadmin = newnode;
     else
     {
         while(temp->next!=NULL)
             temp=temp->next;
 
         temp->next=newnode;
-        newnode->prev = taila;
-        taila = newnode;
+        newnode->prev = tailadmin;
+        tailadmin = newnode;
     }
 
-    return heada;
+    return headadmin;
 }
 
 struct node* createcustomer(struct node *head,int data,int quantity)
 {
     newnode = (struct node*)malloc(sizeof(struct node));
 
-    struct node *temp1 = heada;
+    struct node *temp1 = headadmin;
     int flag = 0;
     while(temp1!=NULL)
     {
@@ -92,15 +92,15 @@ struct node* createcustomer(struct node *head,int data,int quantity)
         struct node *temp = head;
 
         if(temp==NULL)
-            headc = tailc = newnode;
+            headcustomer = tailcustomer = newnode;
         else
         {
             while(temp->next!=NULL)
                 temp=temp->next;
 
             temp->next=newnode;
-            newnode->prev = tailc;
-            tailc = newnode;
+            newnode->prev = tailcustomer;
+            tailcustomer = newnode;
         }
 
 
@@ -109,7 +109,7 @@ struct node* createcustomer(struct node *head,int data,int quantity)
     {
         printf("\n\t\t\t\t\t\t\tThis item is not present in the menu!\n");
     }
-    return headc;
+    return headcustomer;
 }
 
 void displayList(struct node *head)
@@ -143,7 +143,7 @@ struct node* totalsales(int data,int quantity)
     newnode = (struct node*)malloc(sizeof(struct node));
     int flag = 0;
 
-    struct node *temp1 = heada;
+    struct node *temp1 = headadmin;
     while(temp1->data!=data)
     {
         temp1 = temp1->next;
@@ -188,7 +188,7 @@ struct node* totalsales(int data,int quantity)
 
 void calculatetotsales()
 {
-    struct node *temp = headc;
+    struct node *temp = headcustomer;
     while(temp!=NULL)
     {
         head_s = totalsales(temp->data, temp->quantity);
@@ -241,12 +241,12 @@ int deleteadmin()
     int num;
     scanf("%d",&num);
 
-    struct node* temp=heada;
+    struct node* temp=headadmin;
     while(temp!=NULL)
     {
         if (temp->data == num)
         {
-            heada = delete(num, heada, taila);
+            headadmin = delete(num, headadmin, tailadmin);
             return 1;
         }
         temp=temp->next;
@@ -261,12 +261,12 @@ int deletecustomer()
     int num;
     scanf("%d",&num);
 
-    struct node* temp=headc;
+    struct node* temp=headcustomer;
     while(temp!=NULL)
     {
         if (temp->data == num)
         {
-            headc = delete(num, headc, tailc);
+            headcustomer = delete(num, headcustomer, tailcustomer);
             return 1;
         }
         temp=temp->next;
@@ -277,8 +277,8 @@ int deletecustomer()
 
 void displaybill()
 {
-    displayList(headc);
-    struct node *temp = headc;
+    displayList(headcustomer);
+    struct node *temp = headcustomer;
     float total_price = 0;
     while (temp!=NULL)
     {
@@ -339,7 +339,7 @@ void admin()
                 float price;
                 scanf("%d",&num);
 
-                struct node *temp = heada;
+                struct node *temp = headadmin;
 
                 while(temp!=NULL)
                 {
@@ -359,14 +359,14 @@ void admin()
                 scanf("%s",name);
                 printf("\t\t\t\t\t\t\tEnter price: ");
                 scanf("%f",&price);
-                heada = createadmin(heada, num, name, price);
+                headadmin = createadmin(headadmin, num, name, price);
                 printf("\n\t\t\t\t\t\t\tNew food item added to the list!!\n\n");
                 break;
             case 3:
                 if(deleteadmin())
                 {
                     printf("\n\t\t\t\t\t\t### Updated list of food items menu ###\n");
-                    displayList(heada);
+                    displayList(headadmin);
                 }
                 else
                     printf("\n\t\t\t\t\t\tFood item with given serial number doesn't exist!\n\n");
@@ -374,7 +374,7 @@ void admin()
                 break;
             case 4:
                 printf("\n\t\t\t\t\t\t\t   ### Order menu ###\n");
-                displayList(heada);
+                displayList(headadmin);
                 break;
 
             default:
@@ -404,24 +404,24 @@ void customer()
         switch (opt)
         {
             case 1:
-                displayList(heada);
+                displayList(headadmin);
                 printf("\n\t\t\t\t\t\tEnter number corresponding to the item you want to order: ");
                 int n;
                 scanf("%d",&n);
                 printf("\t\t\t\t\t\tEnter quantity: ");
                 int quantity;
                 scanf("%d",&quantity);
-                headc = createcustomer(headc, n, quantity);
+                headcustomer = createcustomer(headcustomer, n, quantity);
                 break;
             case 2:
                 printf("\n\t\t\t\t\t\t\t  ### List of ordered items ###\n");
-                displayList(headc);
+                displayList(headcustomer);
                 break;
             case 3:
                 if(deletecustomer())
                 {
                     printf("\n\t\t\t\t\t\t### Updated list of your ordered food items ###\n");
-                    displayList(headc);
+                    displayList(headcustomer);
                 }
                 else
                     printf("\n\t\t\t\t\t\tFood item with given serial number doesn't exist!!\n");
@@ -430,7 +430,7 @@ void customer()
                 calculatetotsales();
                 printf("\n\t\t\t\t\t\t\t  ### Final Bill ###\n");
                 displaybill();
-                headc = deleteList(headc);
+                headcustomer = deleteList(headcustomer);
                 printf("\n\t\t\t\t\t\tPress any key to return to main menu:\n\t\t\t\t\t\t");
                 fflush(stdin);
                 ch=fgetc(stdin);
@@ -459,11 +459,11 @@ void mainnenu()
 
 int main()
 {
-    heada = createadmin(heada,1,"Hot and Sour Soup",100);
-    heada = createadmin(heada,2,"Manchow Soup",200);
-    heada = createadmin(heada,3,"Manchurian Noodles",150);
-    heada = createadmin(heada,4,"Fried Rice",180);
-    heada = createadmin(heada,5,"Hakka Noodles",80);
+    headadmin = createadmin(headadmin,1,"Kacchi Biriany",500);
+    headadmin = createadmin(headadmin,2,"Chui Jhal",200);
+    headadmin = createadmin(headadmin,3,"Set Menu",150);
+    headadmin = createadmin(headadmin,4,"Fried Rice",180);
+    headadmin = createadmin(headadmin,5,"Borhani",80);
 
     while(1)
     {
