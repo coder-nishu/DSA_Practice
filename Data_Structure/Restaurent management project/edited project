@@ -451,7 +451,7 @@ void mainnenu()
     printf("\n                                 **************************************************************************\n");
     printf("                                                     WELCOME TO RESTAURANT MANAGEMENT SYSTEM\n");
     printf("\n                                 **************************************************************************\n");
-    printf("                                                                 DIU Green GArden\n");
+    printf("                                                                 DIU Green Garden\n");
     printf("                                 **************************************************************************\n\n\n");
     printf("\t\t\t\t\t\t\t1. ADMIN SECTION--> \n");
     printf("\t\t\t\t\t\t\t2. CUSTOMER SECTION--> \n");
