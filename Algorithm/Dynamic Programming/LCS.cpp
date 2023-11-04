@@ -7,32 +7,23 @@ int max(int a, int b)
     else
         return b;
 }
-void PrintTable(int m, int n, int **tab)
-{
-    for (int i = 0; i <= m; i++)
-    {
-        for (int j = 0; j <= n; j++)
-        {
-            cout << tab[i][j] << "  ";
-        }
-        cout << endl;
-    }
-}
 
 int main()
 {
     int m, n;
     char str1[100], str2[100];
-    strcpy(str1, "AGGTAB");
-    strcpy(str2, "GXTXAYB");
+    strcpy(str1, "president");
+    strcpy(str2, "providence");
 
     // cout << "Enter First String:" << endl;
     // cin >> str1;
     // cout << "Enter Second String:" << endl;
     // cin >> str2;
+
     m = strlen(str1);
     n = strlen(str2);
-    //table
+
+    // table
     int tab[m + 1][n + 1];
     for (int i = 0; i < m + 1; i++)
     {
@@ -53,6 +44,7 @@ int main()
             }
         }
     }
+
     // printarray
     for (int i = 0; i <= m; i++)
     {
@@ -62,10 +54,10 @@ int main()
         }
         cout << endl;
     }
-    cout << "The LCS is: " << tab[m][n] << endl;
-    // backtrack
     int x = tab[m][n];
-    cout << x << endl;
+    cout << "The LCS is: " << x << endl;
+
+    // backtrack
     char subSeq[x];
     subSeq[x] = '\0';
     int i = m, j = n, k = x - 1;
