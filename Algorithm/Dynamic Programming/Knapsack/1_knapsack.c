@@ -40,11 +40,11 @@ int max_profit(int weight[], int profit[], int max_w, int n)
 
 int main()
 {
-    int weight[] = {3, 2, 5, 4};
-    int profit[] = {4, 3, 6, 5};
-    int max_w = 5;
-    int n = 4;
-    int max_p = max_profit(weight, profit,5,4);
+    int weight[] = {3, 4,6,5};
+    int profit[] = {2,3,1,4};
+    int max_w = 8;
+    int n = sizeof(weight)/sizeof(int);
+    int max_p = max_profit(weight, profit,max_w,n);
     printf("max p is:%d", max_p);
     return 0;
 }

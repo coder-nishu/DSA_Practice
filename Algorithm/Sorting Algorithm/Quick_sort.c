@@ -1,64 +1,66 @@
-#include <stdio.h>
-void print_arr(int arr[], int n)
-{
-    printf("Array is:");
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d\t", arr[i]);
-    }
-    printf("\n");
-}
-void swap(int a, int b)
-{
-    int temp;
-    temp = b;
-    b = a;
-    a = temp;
-}
-int partition(int arr[], int low, int high)
-{
-    int temp;
-    int pivot = arr[low];
-    int i = low + 1;
-    int j = high;
+#include<stdio.h>
 
-    do
+void swap(int *a,int *b)
+{
+    int temp=*a;
+    *a=*b;
+    *b=temp;
+}
+
+int partition(int arr[],int low,int high)
+{
+    int pivot=arr[low];
+    int i=low+1;
+    int j=high;
+
+    while(1)
     {
-        while (arr[i] <= pivot)
+        while(i<high && arr[i]<pivot)
             i++;
-        while (arr[j] > pivot)
+        while(j>low && arr[j]>pivot)
             j--;
-
-        if (i < j)
+        if(i>=j)
         {
-            temp = arr[j];
-            arr[j] = arr[i];
-            arr[i] = temp;
+            break;
         }
-    } while (i < j);
-    temp = arr[low];
-    arr[low] = arr[j];
-    arr[j] = temp;
+        else
+        {
+            swap(&arr[i],&arr[j]);
+        }
+    }
+    swap(&arr[j],&arr[low]);
     return j;
 }
-void quick_sort(int arr[], int low, int high)
+
+void quickSort(int arr[],int low,int high)
 {
-    int partitionIndex;
-    if (low < high)
+    if(low<high)
     {
-        partitionIndex = partition(arr, low, high);
-        quick_sort(arr, low, partitionIndex - 1);
-        quick_sort(arr, partitionIndex + 1, high);
+        int pivot=partition(arr,low,high);
+        quickSort(arr,low,pivot);
+        quickSort(arr,pivot+1,high);
     }
+}
+
+
+void printArray(int arr[],int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
 }
 
 int main()
 {
-    int arr[] = {3, 5, 4, 7, 6, 9, 8, 2, 1};
-    int n = sizeof(arr) / sizeof(int);
-    print_arr(arr, n);
-    quick_sort(arr, 0, n-1);
-    print_arr(arr, n);
-
+    int arr[]= {4,5,2,1,9,3};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int low=0,high=n-1;
+    printf("Before sorting : ");
+    printArray(arr,n);
+    printf("After  sorting : ");
+    quickSort(arr,low,high);
+    printArray(arr,n);
     return 0;
 }
