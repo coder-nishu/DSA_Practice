@@ -22,7 +22,8 @@ int main()
 
     m = strlen(str1);
     n = strlen(str2);
-
+    cout << "First String:" << str1 << endl;
+    cout << "Second String:" << str2 << endl;
     // table
     int tab[m + 1][n + 1];
     for (int i = 0; i < m + 1; i++)
@@ -46,6 +47,7 @@ int main()
     }
 
     // printarray
+    cout << "Table of LCS:\n";
     for (int i = 0; i <= m; i++)
     {
         for (int j = 0; j <= n; j++)
